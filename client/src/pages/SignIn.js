@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-
 import axios from "axios";
 import classnames from "classnames";
 
-import { Link, withRouter, Redirect, router } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class SignIn extends Component {
   constructor(props) {
@@ -19,8 +18,10 @@ class SignIn extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidMount() {
-    window.scrollTo(0, 0);
+  UNSAFE_componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
   }
 
   onChange(e) {
@@ -37,10 +38,14 @@ class SignIn extends Component {
 
     // console.log(userData);
 
+    const target = "http://onescrin.citural.com.ng";
+    // this.props.history.push(target)
+
     axios
       .post("http://localhost:23005/api/users/login", userData)
-      .then((res) => console.log(res.data))
+      .then((res) => this.history.push("/dashboard"))
       .catch((err) => this.setState({ errors: err.response.data }));
+    // this.setState({ newUser });this.props.history.push(`${baseUrl}`))
   }
 
   render() {
