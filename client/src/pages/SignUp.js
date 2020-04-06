@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import classnames from "classnames";
 
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class SignUp extends Component {
   constructor(props) {
@@ -54,14 +54,10 @@ class SignUp extends Component {
 
     axios
       .post("http://localhost:23005/api/users/signup", newUser)
-      .then((res) => console.log(res.data))
+
+      .then((res) => this.props.history.push("/sign-in")) //console.log(res.data))
       .catch((err) => this.setState({ errors: err.response.data }));
 
-    // if (newUser.data) {
-    //   return "Please check your details";
-    // } else {
-    //   this.props.history.push("/sign-in");
-    // }
     // this.setState({ newUser });
   }
 
@@ -173,4 +169,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);
