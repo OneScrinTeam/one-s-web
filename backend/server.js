@@ -37,11 +37,11 @@ require("./config/passport")(passport);
 // Use these routes
 app.use("/api/users", users);
 
+
 //  Serve static asset assets if in production
 if (process.env.NODE_ENV === "production") {
     // Set Static Folder
     app.use(express.static("client/build"));
-
     app.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
     });

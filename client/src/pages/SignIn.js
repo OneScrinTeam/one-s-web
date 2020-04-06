@@ -1,41 +1,59 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import classnames from "classnames";
+
+import { Link, withRouter } from "react-router-dom";
 
 class SignIn extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       email: "",
       password: "",
+      errors: {},
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  handleChange = (e) => {
-    let target = e.target;
-    let value = target.type === "checkbox" ? target.checked : target.value;
-    let name = target.name;
+  UNSAFE_componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
 
-    this.setState({
-      [name]: value,
-    });
-  };
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-  handleSubmit = (e) => {
+  onSubmit(e) {
     e.preventDefault();
 
-    console.log("the form was submitted");
-    console.log(this.state);
-  };
+    const userData = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    // console.log(userData);
+
+    const target = "http://onescrin.citural.com.ng";
+    // this.props.history.push(target)
+
+    axios
+      .post("http://localhost:23005/api/users/login", userData)
+      .then((res) => this.props.history.push("/dashboard"))
+      .catch((err) => this.setState({ errors: err.response.data }));
+    // this.setState({ newUser });this.props.history.push(`${baseUrl}`))
+  }
 
   render() {
+    const { errors } = this.state;
     return (
       <div>
         <div className="FormCenter">
-          <form className="FormFields" onSubmit={this.handleSubmit}>
+          <form className="FormFields" onSubmit={this.onSubmit}>
             <div className="FormField">
               <label htmlFor="email" className="FormField-Label">
                 Email
@@ -43,12 +61,18 @@ class SignIn extends Component {
               <input
                 type="text"
                 id="email"
+                className={classnames("FormField-Input", {
+                  "is-invalid": errors.email,
+                })}
                 className="FormField-Input"
                 placeholder="Enter your Email"
                 name="email"
                 value={this.state.email}
-                onChange={this.handleChange}
+                onChange={this.onChange}
               />
+              {errors.email && (
+                <div className="invalid-feedback">{errors.email}</div>
+              )}
             </div>
             <div className="FormField">
               <label htmlFor="password" className="FormField-Label">
@@ -57,17 +81,23 @@ class SignIn extends Component {
               <input
                 type="password"
                 id="password"
+                className={classnames("FormField-Input", {
+                  "is-invalid": errors.password,
+                })}
                 className="FormField-Input"
                 placeholder="***********"
                 name="password"
                 value={this.state.password}
-                onChange={this.handleChange}
+                onChange={this.onChange}
               />
+              {errors.password && (
+                <div className="invalid-feedback">{errors.password}</div>
+              )}
             </div>
 
             <div className="FormField">
               <button className="FormField-Button mr-20">Sign In</button>{" "}
-              <Link to="/" className="FormField-Link">
+              <Link exact to="/dashboard" className="FormField-Link">
                 Create Account
               </Link>
             </div>
@@ -78,4 +108,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default withRouter(SignIn);
