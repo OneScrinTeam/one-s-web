@@ -43,7 +43,7 @@ class SignIn extends Component {
 
     axios
       .post("http://localhost:23005/api/users/login", userData)
-      .then((res) => this.history.push("/dashboard"))
+      .then((res) => this.props.history.push("/dashboard"))
       .catch((err) => this.setState({ errors: err.response.data }));
     // this.setState({ newUser });this.props.history.push(`${baseUrl}`))
   }
