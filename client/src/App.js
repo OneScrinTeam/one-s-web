@@ -15,7 +15,6 @@ class App extends Component {
     return (
       <Router>
         <NavBar />
-
         <Route exact path="/" component={Landing} />
         <Route exact path="/sign-up" component={Auth} />
         <Route exact path="/dashboard" component={ChattRoom} />
