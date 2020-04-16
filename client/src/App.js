@@ -1,24 +1,21 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Landing from "./pages/landing/Landing";
 import NavBar from "./pages/nav-bar/NavBar";
 
-import Auth from "./pages/auth/Auth";
-
-import ChattRoom from "./pages/chat-room/ChattRoom";
-
-import "./App.css";
+// import Auth from "./pages/auth/Auth";
+import ChatRoom from "./pages/chat-room/ChatRoom";
 
 class App extends Component {
   render() {
     return (
       <Router>
         <NavBar />
-
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/sign-up" component={Auth} />
-        <Route exact path="/dashboard" component={ChattRoom} />
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/chat-room" component={ChatRoom} />
+        </Switch>
       </Router>
     );
   }

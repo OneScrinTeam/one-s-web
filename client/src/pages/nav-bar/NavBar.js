@@ -67,9 +67,12 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/sign-in" className="nav-link">
+                  <a
+                    className="btn btn-primary mr-2 mb-2"
+                    href="http://206.189.201.54:8001/#/welcome"
+                  >
                     Sign In
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </nav>
