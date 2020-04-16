@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Landing extends Component {
   render() {
     return (
-      <div className="site-wrap" id="home-section">
+      <div className="site-wrap" id="home-section" style={{ "margin-top": "15px" }}>
         <div className="site-blocks-cover" style={{ overflow: "hidden" }}>
           <div className="container">
             <div className="row align-items-center justify-content-center">

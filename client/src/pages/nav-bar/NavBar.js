@@ -13,7 +13,7 @@ const NavBar = () => {
             <h1 className="mb-0 site-logo">
               <img src="/assets/images/logo.png" alt="" className="img-fluid" />
               <Link to="/" className="text-black h2 mb-0">
-                OneScrin<span className="text-primary">.</span>{" "}
+                OneScrin<span className="text-primary"></span>{" "}
               </Link>
             </h1>
           </div>
@@ -57,23 +57,16 @@ const NavBar = () => {
                   </ul>
                 </li>
                 <li>
-                  <Link to="blog" className="nav-link">
-                    Blog
-                  </Link>
-                </li>
-                <li>
                   <Link to="/contact-section" className="nav-link">
                     Contact
                   </Link>
                 </li>
-                <li>
-                  <a
-                    className="btn btn-primary mr-2 mb-2"
-                    href="http://206.189.201.54:8001/#/welcome"
-                  >
-                    Sign In
-                  </a>
-                </li>
+                <a
+                  className="btn btn-primary"
+                  href="http://206.189.201.54:8001/#/welcome"
+                >
+                  Sign In
+                </a>
               </ul>
             </nav>
           </div>
