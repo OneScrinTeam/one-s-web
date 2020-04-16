@@ -21,9 +21,9 @@ class SignUp extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFcomponentDidUpdate(nextProps) {
     if (this.props.name !== nextProps.name) {
-      this.setState({name: nextProps.name});
+      this.setState({ name: nextProps.name });
     }
   }
 

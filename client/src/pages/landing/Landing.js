@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 class Landing extends Component {
   render() {
@@ -34,9 +33,12 @@ class Landing extends Component {
                       video collaboration.
                     </p>
                     <div>
-                      <Link to="/sign-up" className="btn btn-primary mr-2 mb-2">
+                      <a
+                        className="btn btn-primary mr-2 mb-2"
+                        href="http://206.189.201.54:8001/#/welcome"
+                      >
                         Get Started
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </div>
