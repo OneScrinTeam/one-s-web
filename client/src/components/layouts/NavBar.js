@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({ match, loading }) => {
   return (
     <div
       className="site-navbar py-4 js-sticky-header site-navbar-target"
@@ -30,7 +30,8 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/features" className="nav-link">
+                  {/* <Link to="/features" className="nav-link">Features</Link> */}
+                  <Link smooth to="features">
                     Features
                   </Link>
                 </li>
@@ -63,7 +64,7 @@ const NavBar = () => {
                 </li>
                 <a
                   className="btn btn-primary"
-                  href="http://206.189.201.54:8001/#/welcome"
+                  href="https://account.onescrin.com.ng"
                 >
                   Sign In
                 </a>

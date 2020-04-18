@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Landing from "./pages/landing/Landing";
-import NavBar from "./pages/nav-bar/NavBar";
+import Landing from "./components/layouts/Landing";
+import NavBar from "./components/layouts/NavBar";
 
-// import Auth from "./pages/auth/Auth";
-import ChatRoom from "./pages/chat-room/ChatRoom";
+import Feature from "./pages/features/Feature";
 
 class App extends Component {
   render() {
@@ -14,8 +13,9 @@ class App extends Component {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/chat-room" component={ChatRoom} />
+          <Route exact path="/features" component={Feature} />
         </Switch>
+        {/* <Footer/> */}
       </Router>
     );
   }
